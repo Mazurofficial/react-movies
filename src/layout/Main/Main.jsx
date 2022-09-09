@@ -10,7 +10,7 @@ export default class Main extends Component {
       movies: [],
       errorMessage: '',
       loading: true,
-      API_URL: `http://www.omdbapi.com/?apikey=${API_KEY}`,
+      API_URL: `https://www.omdbapi.com/?apikey=${API_KEY}`,
    };
    componentDidMount() {
       fetch(`${this.state.API_URL}&s=spider+man`)
