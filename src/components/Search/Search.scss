@@ -1,0 +1,25 @@
+.Search{
+    margin-top: 30px;
+    &-field{
+        width: 200px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 0;
+        border: 0;
+        border-bottom: 1px solid darkblue;
+        outline: none;
+    }
+    button{
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 0;
+        border: 1px solid darkblue;
+        background-color: darkblue;
+        color: #fff;
+        transition: .3s ease-in-out;
+    }
+    button:hover{
+        background-color: blue;
+        cursor: pointer;
+    }
+}

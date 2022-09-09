@@ -1,0 +1,16 @@
+.Header{
+    box-sizing: border-box;
+    width: 100vw;
+    padding: 0 100px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: darkblue;
+    &-logo{
+        font-size: 30px;
+        font-weight: bold;
+        color: #fff;
+        text-decoration: none;
+    }
+}
