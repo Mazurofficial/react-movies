@@ -1,92 +1,83 @@
-import React, { Component } from 'react';
-import './Search.scss';
+import React from 'react';
+import { useState } from 'react';
 
-export default class Search extends Component {
-   state = {
-      search: 'spider+man',
-      filter: 'all',
+export default function Search(props) {
+   const [search, setSearch] = useState('spider+man');
+   const [filter, setFilter] = useState('all');
+
+   const handleSearchField = (e) => {
+      setSearch(e.target.value);
+      // .replace(/ /g, '+')
    };
 
-   handleSearchField = (e) => {
-      this.setState({ search: e.target.value.replace(/ /g, '+') });
-   };
-
-   handleKey = (event) => {
-      if (this.state.search) {
+   const handleKey = (event) => {
+      if (search) {
          if (event.key === 'Enter') {
-            this.props.searchMovie(this.state.search, this.state.filter);
+            props.searchMovie(search, filter);
          }
       }
    };
 
-   handleSearchButton = () => {
-      if (this.state.search) {
-         this.props.searchMovie(this.state.search, this.state.filter);
+   const handleSearchButton = () => {
+      if (search) {
+         props.searchMovie(search, filter);
       }
    };
 
-   handleFilter = (e) => {
-      if (this.state.search) {
-         this.setState(
-            () => ({ filter: e.target.dataset.type }),
-            () => {
-               console.log(this.state.search);
-               console.log(this.state.filter);
-               this.props.searchMovie(this.state.search, this.state.filter);
-            }
-         );
+   const handleFilter = (e) => {
+      if (search) {
+         setFilter(e.target.dataset.type);
+         props.searchMovie(search, e.target.dataset.type);
       }
    };
 
-   render() {
-      return (
-         <>
-            <div className="Search">
-               <input
-                  className="Search-field"
-                  type="text"
-                  placeholder="search"
-                  value={this.state.serch}
-                  onChange={this.handleSearchField}
-                  onKeyDown={this.handleKey}
-               />
-               <button onClick={this.handleSearchButton}>search</button>
-            </div>
-            <div className="Filter">
-               <input
-                  type="radio"
-                  name="filter"
-                  data-type="all"
-                  onChange={this.handleFilter}
-                  checked={this.state.filter === 'all'}
-               ></input>
-               <label htmlFor="all">All</label>
-               <input
-                  type="radio"
-                  name="filter"
-                  data-type="game"
-                  onChange={this.handleFilter}
-                  checked={this.state.filter === 'game'}
-               ></input>
-               <label htmlFor="game">Games</label>
-               <input
-                  type="radio"
-                  name="filter"
-                  data-type="movie"
-                  onChange={this.handleFilter}
-                  checked={this.state.filter === 'movie'}
-               ></input>
-               <label htmlFor="movie">Movies</label>
-               <input
-                  type="radio"
-                  name="filter"
-                  data-type="series"
-                  onChange={this.handleFilter}
-                  checked={this.state.filter === 'series'}
-               ></input>
-               <label htmlFor="series">Series</label>
-            </div>
-         </>
-      );
-   }
+   return (
+      <>
+         <div className="Search">
+            <input
+               className="Search-field"
+               type="text"
+               placeholder="search"
+               value={search}
+               onChange={handleSearchField}
+               onKeyDown={handleKey}
+            />
+            <button onClick={handleSearchButton}>search</button>
+         </div>
+         <div className="Filter">
+            <input
+               type="radio"
+               name="filter"
+               data-type="all"
+               onChange={handleFilter}
+               checked={filter === 'all'}
+            ></input>
+            <label htmlFor="all">All</label>
+            <input
+               type="radio"
+               name="filter"
+               data-type="game"
+               onChange={handleFilter}
+               checked={filter === 'game'}
+            ></input>
+            <label htmlFor="game">Games</label>
+            <input
+               type="radio"
+               name="filter"
+               data-type="movie"
+               onChange={handleFilter}
+               checked={filter === 'movie'}
+            ></input>
+            <label htmlFor="movie">Movies</label>
+            <input
+               type="radio"
+               name="filter"
+               data-type="series"
+               onChange={handleFilter}
+               checked={filter === 'series'}
+            ></input>
+            <label htmlFor="series">Series</label>
+         </div>
+      </>
+   );
 }
